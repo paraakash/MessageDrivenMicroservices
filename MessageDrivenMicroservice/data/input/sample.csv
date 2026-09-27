@@ -1,0 +1,21 @@
+name,city,amount,category
+Alice,New York,1200.50,retail
+Bob,London,980.00,retail
+Charlie,Paris,1455.75,finance
+Diana,Tokyo,2100.00,logistics
+Eve,Sydney,780.25,retail
+Frank,Berlin,1650.80,finance
+Grace,Delhi,920.40,health
+Heidi,Rome,1340.10,retail
+Ivan,Seoul,2200.90,logistics
+Judy,Chicago,900.00,retail
+Karl,Los Angeles,1560.45,finance
+Laura,Sao Paulo,1110.00,health
+Mallory,Madrid,1325.70,retail
+Nina,Johannesburg,1001.00,logistics
+Oscar,Dubai,1999.99,finance
+Priya,Mumbai,875.25,retail
+Quinn,Toronto,1880.50,health
+Rachel,Singapore,2222.22,logistics
+Sam,Amsterdam,1350.00,retail
+Tom,Zurich,2105.30,finance

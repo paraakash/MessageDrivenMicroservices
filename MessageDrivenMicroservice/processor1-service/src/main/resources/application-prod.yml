@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+
+processor1:
+  listeners: ${PROCESSOR1_LISTENERS:5}
+  thread-pool-core-size: ${PROCESSOR1_THREAD_POOL_CORE_SIZE:12}
+  thread-pool-max-size: ${PROCESSOR1_THREAD_POOL_MAX_SIZE:24}

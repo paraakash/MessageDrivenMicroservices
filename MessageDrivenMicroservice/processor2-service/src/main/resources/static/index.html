@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Processor 2 Stats</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; background: #f4f7fb; }
+        h1 { color: #223; }
+        table { border-collapse: collapse; width: 100%; max-width: 900px; background: white; }
+        th, td { border: 1px solid #dfe6ee; padding: 10px; text-align: left; }
+        th { background: #eef4ff; }
+        .status { color: #0a7d25; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Processor 2 File Completion Stats</h1>
+    <div id="summary">Loading...</div>
+    <table>
+        <thead>
+        <tr>
+            <th>File</th>
+            <th>Records Written</th>
+            <th>Batch</th>
+            <th>Status</th>
+            <th>Last Updated</th>
+        </tr>
+        </thead>
+        <tbody id="stats-body"></tbody>
+    </table>
+
+    <script>
+        async function loadStats() {
+            const response = await fetch('/stats');
+            const data = await response.json();
+            const files = data.files || {};
+            const rows = Object.values(files);
+            const summary = document.getElementById('summary');
+            summary.innerHTML = '<strong>Total files:</strong> ' + rows.length + ' | <strong>Generated:</strong> ' + data.generatedAt;
+
+            const tbody = document.getElementById('stats-body');
+            tbody.innerHTML = '';
+
+            if (rows.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5">No processed files yet.</td></tr>';
+                return;
+            }
+
+            rows.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.fileName || 'unknown'}</td>
+                    <td>${item.recordsWritten || 0}</td>
+                    <td>${item.batchNumber || 0}</td>
+                    <td class="status">${item.completed ? 'Completed' : 'Pending'}</td>
+                    <td>${new Date(item.lastUpdated || Date.now()).toLocaleString()}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        loadStats();
+        setInterval(loadStats, 5000);
+    </script>
+</body>
+</html>

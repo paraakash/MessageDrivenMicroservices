@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+processor1:
+  listeners: 3
+  thread-pool-core-size: 8
+  thread-pool-max-size: 16

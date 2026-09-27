@@ -1,0 +1,12 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+
+reader:
+  input-directory: ${READER_INPUT_DIRECTORY:/opt/app/data/input}
+  output-directory: ${READER_OUTPUT_DIRECTORY:/opt/app/data/output}
+  batch-size: ${READER_BATCH_SIZE:20}
+  poll-interval-ms: ${READER_POLL_INTERVAL_MS:5000}

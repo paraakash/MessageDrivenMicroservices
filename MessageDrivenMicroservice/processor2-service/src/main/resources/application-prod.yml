@@ -1,0 +1,10 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+
+processor2:
+  output-directory: ${PROCESSOR2_OUTPUT_DIRECTORY:/opt/app/data/output}
+  listeners: ${PROCESSOR2_LISTENERS:4}

@@ -1,0 +1,43 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: dev
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    listener:
+      simple:
+        acknowledge-mode: auto
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          initial-interval: 1000ms
+          max-attempts: 5
+          max-interval: 10000ms
+          multiplier: 2.0
+
+processor1:
+  listeners: ${PROCESSOR1_LISTENERS:3}
+  thread-pool-core-size: ${PROCESSOR1_THREAD_POOL_CORE_SIZE:8}
+  thread-pool-max-size: ${PROCESSOR1_THREAD_POOL_MAX_SIZE:16}
+  queue:
+    in: ${PROCESSOR1_IN_Q:q1}
+    out: ${PROCESSOR1_OUT_Q:q2}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.example.processor1: INFO
+    org.springframework.amqp: INFO
